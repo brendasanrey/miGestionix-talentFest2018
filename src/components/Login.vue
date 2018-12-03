@@ -1,12 +1,29 @@
 <template>
   <div>
-    <input type="email" placeholder="username"> |
-    <input type="password" placeholder="password">
+    <form @submit.prevent="handleSigninUser">
+      <input type="email" placeholder="usuario" v-model="username"> |
+      <input type="password" placeholder="contraseña" v-model="password">
+      <button>Login</button>
+    </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: "login"
+  name: "login",
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    handleSigninUser() {
+      this.$store.dispatch("signinUser", {
+        username: this.username,
+        password: this.password
+      });
+    }
+  }
 };
 </script>
