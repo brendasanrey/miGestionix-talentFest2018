@@ -1,7 +1,8 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">MiGestionix</a>
+      <a class="navbar-brand" href="/home"> <img src="../assets/icono.png" height="35" class="d-inline-block align-top">
+      MiGestionix</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -26,7 +27,7 @@
               class="d-block list-group list-group-flush"
             >
               <li
-                class="list-group-item"
+                class="list-group-item pointer"
                 @click="goToSearchResult(result.id)"
               >{{result.business_name}} - {{result.status}}</li>
             </ul>
