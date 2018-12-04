@@ -35,6 +35,7 @@
               </div>
             </div>
           </div>
+    
         </div>
       </div>
     </div>
@@ -56,8 +57,26 @@ export default {
   methods: {
     getClient() {
       this.$store.dispatch("getClient", this.clientID);
+
     }
   }
 };
 </script>
+
+
+<style scoped>
+.table {
+  background-color: #ffffff;
+  height: 100vh;
+}
+thead {
+  background-color: #e98823;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 28px;
+  margin: 0.5em 0em 0.5em 1.5em;
+  color: #fff;
+}
+</style>
 

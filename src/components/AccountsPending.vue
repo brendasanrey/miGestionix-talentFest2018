@@ -1,19 +1,10 @@
+
 <template>
-  <div>
+<div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a
-        class="navbar-brand"
-        href="#"
-      >MiGestionix</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+
+      <a class="navbar-brand" href="#">MiGestionix</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -22,6 +13,7 @@
         id="navbarSupportedContent"
       >
         <form class="form-inline my-2 my-lg-0 ml-auto">
+
           <input
             class="form-control mr-sm-2"
             type="search"
@@ -46,7 +38,7 @@
             </ul>
           </div>
         </form>
-        <button class="btn btn-outline-success my-2 my-sm-0">Cerrar Sesión</button>
+        <button class="btn btn-outline-success my-2 my-sm-0"  @click="handleSignOutUser">Cerrar Sesión</button>
       </div>
     </nav>
     <div class="container-fluid mt-5">
@@ -60,6 +52,7 @@
                   <th scope="col">Cantidad</th>
                 </tr>
               </thead>
+
               <tbody
                 class="text-center"
                 v-for="client in clients"
@@ -70,6 +63,7 @@
                   v-if="account.total>0"
                   :key="account.id"
                 >
+
                   <td>{{client.business_name}}</td>
                   <td>
                     <ul class="list-group list-group-flush text-center">
@@ -83,22 +77,29 @@
         </div>
       </div>
     </div>
+    
   </div>
+  
 </template>
-
 
 <script>
 import { mapGetters } from "vuex";
-
 export default {
   name: "accountsPending",
   computed: {
     ...mapGetters(["clients", "searchResults"])
   },
   created() {
-    this.getListOfClients();
+    if (!localStorage.getItem("access_token")) {
+      this.$router.push("/");
+    } else {
+      this.getListOfClients();
+    }
   },
   methods: {
+    handleSignOutUser() {
+      this.$store.dispatch("signoutUser");
+    },
     getListOfClients() {
       this.$store.dispatch("getList");
     },
@@ -112,7 +113,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .table-responsive {
   background-color: #fff;
@@ -122,5 +122,6 @@ thead {
   background-color: #e98823;
 }
 </style>
+
 
 

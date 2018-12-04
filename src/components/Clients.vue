@@ -1,26 +1,12 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a
-        class="navbar-brand"
-        href="#"
-      >MiGestionix</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <a class="navbar-brand" href="#">MiGestionix</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div
-        class="collapse navbar-collapse"
-        id="navbarSupportedContent"
-      >
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="form-inline my-2 my-lg-0 ml-auto">
           <input
             class="form-control mr-sm-2"
@@ -46,7 +32,7 @@
             </ul>
           </div>
         </form>
-        <button class="btn btn-outline-success my-2 my-sm-0">Cerrar Sesión</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" @click="handleSignOutUser">Cerrar Sesión</button>
       </div>
     </nav>
     <div class="container-fluid">
@@ -61,10 +47,7 @@
                 <th scope="col">Status</th>
               </tr>
             </thead>
-            <tbody
-              v-for="client in clients"
-              :key="client.tax_id"
-            >
+            <tbody v-for="client in clients" :key="client.tax_id">
               <tr>
                 <td>{{client.business_name}}</td>
                 <td>{{client.tax_id}}</td>
@@ -88,9 +71,16 @@ export default {
     ...mapGetters(["clients", "searchResults"])
   },
   created() {
-    this.getListOfClients();
+    if (!localStorage.getItem("access_token")) {
+      this.$router.push("/");
+    } else {
+      this.getListOfClients();
+    }
   },
   methods: {
+    handleSignOutUser() {
+      this.$store.dispatch("signoutUser");
+    },
     getListOfClients() {
       this.$store.dispatch("getList");
     },
