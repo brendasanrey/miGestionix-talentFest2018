@@ -1,17 +1,19 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import Axios from 'axios';
 
-Vue.use(Vuex)
+import Vue from "vue";
+import Vuex from "vuex";
+
+
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-
-  },
-  mutations: {
-
-  },
+  state: {},
+  mutations: {},
   actions: {
+    signinUser: ({ commit }, payload) => {
+      console.log(payload);
+    }
+  }
+});
     getList: ({
       commit
     }) => {
@@ -26,3 +28,4 @@ export default new Vuex.Store({
     }
   }
 })
+
