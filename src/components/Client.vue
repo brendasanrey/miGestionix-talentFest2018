@@ -1,68 +1,41 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a
-        class="navbar-brand"
-        href="#"
-      >MiGestionix</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div
-        class="collapse navbar-collapse"
-        id="navbarSupportedContent"
-      >
-        <form class="form-inline my-2 my-lg-0 ml-auto">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          >
-          <button
-            class="btn btn-outline-success my-2 my-sm-0 mr-2"
-            type="submit"
-          >Buscar</button>
-          <button
-            class="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >Cerrar Sesión</button>
-        </form>
-      </div>
-    </nav>
     <div class="container-fluid">
       <div class="row">
-        <div class="table-responsive col-md-9 mx-auto">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Compañía</th>
-                <th scope="col">RFC</th>
-                <th scope="col">Ultima Actividad</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody
-              v-for="client in clients"
-              :key="client.tax_id"
-            >
-              <tr>
-                <td>{{client.business_name}}</td>
-                <td>{{client.tax_id}}</td>
-                <td>{{client.last_activity}}</td>
-                <td>{{client.status}}</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{{client.business_name}}</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class=" col-md-9 col-lg-12 text-center">
+                      <table class="table table-user-information">
+                        <tbody>
+                          <tr>
+                            <td>RFC:</td>
+                            <td>Status:</td>
+                            <td>Ultima Actividad:</td>
+                          </tr>
+                          <tr>
+                            <td>{{client.tax_id}}</td>
+                            <td>{{client.status}}</td>
+                            <td>{{client.last_activity}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+    
         </div>
       </div>
     </div>
@@ -73,20 +46,23 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "clients",
+  name: "client",
+  props: ["clientID"],
   computed: {
-    ...mapGetters(["clients"])
+    ...mapGetters(["client"])
   },
   created() {
-    this.getListOfClients();
+    this.getClient();
   },
   methods: {
-    getListOfClients() {
-      this.$store.dispatch("getClientList");
+    getClient() {
+      this.$store.dispatch("getClient", this.clientID);
+
     }
   }
 };
 </script>
+
 
 <style scoped>
 .table {
@@ -103,3 +79,4 @@ thead {
   color: #fff;
 }
 </style>
+

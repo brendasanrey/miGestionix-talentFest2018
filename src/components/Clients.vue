@@ -8,10 +8,31 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="form-inline my-2 my-lg-0 ml-auto">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Buscar</button>
-          <button class="btn btn-outline-success my-2 my-sm-0" @click="handleSignOutUser">Cerrar Sesión</button>
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            @input="handleSearchItem"
+            v-model="searchString"
+          >
+          <div
+            class="card list-search mt-0"
+            v-if="searchResults.length > 0"
+          >
+            <ul
+              v-for="result in searchResults"
+              :key="result.tax_id"
+              class="d-block list-group list-group-flush"
+            >
+              <li
+                class="list-group-item"
+                @click="goToSearchResult(result.id)"
+              >{{result.business_name}} - {{result.status}}</li>
+            </ul>
+          </div>
         </form>
+        <button class="btn btn-outline-success my-2 my-sm-0" @click="handleSignOutUser">Cerrar Sesión</button>
       </div>
     </nav>
     <div class="container-fluid">
@@ -47,7 +68,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "clients",
   computed: {
-    ...mapGetters(["clients"])
+    ...mapGetters(["clients", "searchResults"])
   },
   created() {
     if (!localStorage.getItem("access_token")) {
@@ -62,6 +83,13 @@ export default {
     },
     getListOfClients() {
       this.$store.dispatch("getList");
+    },
+    handleSearchItem() {
+      if (this.searchString !== "") {
+        this.$store.dispatch("searchItem", {
+          searchString: this.searchString
+        });
+      }
     }
   }
 };
