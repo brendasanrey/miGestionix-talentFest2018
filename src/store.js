@@ -42,7 +42,6 @@ export default new Vuex.Store({
           }
         })
         .then(resp => {
-          console.log(resp.data);
           commit('setClientList', resp.data);
         })
         .catch(err => console.log(err));
@@ -53,4 +52,3 @@ export default new Vuex.Store({
   }
 
 });
-
