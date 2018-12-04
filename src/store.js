@@ -25,7 +25,6 @@ export default new Vuex.Store({
         })
         .then(resp => console.log(resp.data))
         .catch(err => console.log(err));
-    }
-  }
-})
+    
+}
 
