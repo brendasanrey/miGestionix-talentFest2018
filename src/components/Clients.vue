@@ -10,7 +10,7 @@
         <form class="form-inline my-2 my-lg-0 ml-auto">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Buscar</button>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerrar Sesión</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" @click="handleSignOutUser">Cerrar Sesión</button>
         </form>
       </div>
     </nav>
@@ -57,6 +57,9 @@ export default {
     }
   },
   methods: {
+    handleSignOutUser() {
+      this.$store.dispatch("signoutUser");
+    },
     getListOfClients() {
       this.$store.dispatch("getList");
     }

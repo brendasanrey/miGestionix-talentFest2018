@@ -10,7 +10,7 @@
         <form class="form-inline my-2 my-lg-0 ml-auto">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="searchString">
           <button class="btn btn-outline-success my-2 my-sm-0 mr-2" @click="handleSearchInput">Buscar</button>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerrar Sesión</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" @click="handleSignOutUser">Cerrar Sesión</button>
         </form>
       </div>
     </nav>
@@ -144,6 +144,9 @@ export default {
   methods: {
     getListOfClients() {
       this.$store.dispatch("getList");
+    },
+    handleSignOutUser() {
+      this.$store.dispatch("signoutUser");
     },
     handleSearchInput() {
       if (this.searchString === "") {
