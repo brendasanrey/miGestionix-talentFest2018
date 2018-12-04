@@ -41,7 +41,36 @@
     </nav>
     <div class="container-fluid">
       <div class="row">
-
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-center">
+                <tr>
+                  <th scope="col">Compañía</th>
+                  <th scope="col">Cantidad</th>
+                </tr>
+              </thead>
+              <tbody
+                class="text-center"
+                v-for="client in clients"
+                :key="client.id"
+              >
+                <tr
+                  v-for="account in client.accounts_pending"
+                  v-if="account.total>0"
+                  :key="account.id"
+                >
+                  <td>{{client.business_name}}</td>
+                  <td>
+                    <ul class="list-group list-group-flush text-center">
+                      <li class="list-group-item text-center">{{account.total}}</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
