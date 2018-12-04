@@ -1,43 +1,58 @@
 <template>
   <div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+      <a class="navbar-brand" href="/home"> <img src="../assets/icono.png" height="35" class="d-inline-block align-top">
+      MiGestionix</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h3 class="panel-title">{{client.business_name}}</h3>
-                </div>
-                <div class="panel-body">
-                  <div class="row">
-                    <div class=" col-md-9 col-lg-12 text-center">
-                      <table class="table table-user-information">
-                        <tbody>
-                          <tr>
-                            <td>RFC:</td>
-                            <td>Status:</td>
-                            <td>Ultima Actividad:</td>
-                          </tr>
-                          <tr>
-                            <td>{{client.tax_id}}</td>
-                            <td>{{client.status}}</td>
-                            <td>{{client.last_activity}}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-    
-        </div>
+      <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+        <button class="btn btn-outline-success my-2 my-sm-0 ml-auto" @click="handleSignOutUser">Cerrar Sesión</button>
       </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 mt-5">
+          <div class="table-responsive">
+          <h3 class="text-white text-center">Empresa >> {{client.business_name}}</h3>
+            <table class="table mt-3">
+              <thead class="text-center">
+                <tr>
+                    <td>RFC</td>
+                    <td>Fecha de registro</td>
+                    <td>Ultima Actividad</td>
+                </tr>
+              </thead>
+
+              <tbody class="text-center">
+                 <td>{{client.tax_id}}</td>
+                  <td>{{client.register_date}}</td>
+                  <td>{{client.last_activity}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table mt-3">
+              <thead class="text-center">
+                <tr>
+                    <td>Contacto</td>
+                    <td>País</td>
+                    <td>Status</td>
+                </tr>
+              </thead>
+
+              <tbody class="text-center">
+                <td>{{client.contact.email}}</td>
+                 <td>{{client.address.country}}</td>
+                  <td v-if="client.active">Activo</td>
+                  <td v-if="!client.active">Inactivo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+            
     </div>
   </div>
 </template>
@@ -58,6 +73,9 @@ export default {
     getClient() {
       this.$store.dispatch("getClient", this.clientID);
 
+    },
+    handleSignOutUser() {
+      this.$store.dispatch("signoutUser");
     }
   }
 };
@@ -67,7 +85,7 @@ export default {
 <style scoped>
 .table {
   background-color: #ffffff;
-  height: 100vh;
+  height:0vh;
 }
 thead {
   background-color: #e98823;

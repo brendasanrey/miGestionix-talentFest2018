@@ -1,12 +1,12 @@
 <template>
   <div class="container fluid">
-    <div class="row">
+    <div class="row mt-5">
       <div class="col sm-12 md-12 lg-12">
         <div class="row">
-          <div class="sm-12 md-8 lg-8 offset-md-4 lg-4 mt-3">
+          <div class="sm-12 md-8 lg-8 offset-md-4 lg-4 mt-3 mx-auto">
             <center>
               <img
-                src="../assets/logo_gestionix.png"
+                src="../assets/logo.png"
                 class="img-fluid"
                 width="330"
                 alt="Responsive image"
@@ -21,7 +21,7 @@
         >
           <div class="row">
             <div class="col-12 col-md-8 col-lg-8 offset-lg-2">
-              <h2 class="text-white mt-3">Inicia sesión y comienza a controlar tu negocio</h2>
+              <h4 class="text-white mt-3">Inicia sesión y comienza a controlar tu negocio</h4>
             </div>
             <div class="col-12 col-md-8 col-lg-6 offset-lg-3">
               <p class="text-white mt-3">Usuario</p>
@@ -81,6 +81,7 @@ p {
   border-radius: 10px !important;
   border: 1px solid #fff !important;
   background-color: #fff !important;
+  height:40px;
 }
 
 .btn-large {
