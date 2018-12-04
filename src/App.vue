@@ -4,4 +4,8 @@
   </div>
 </template>
 
+<style>
+body{
+  font-family: 'Quicksand', sans-serif;
+}
 
