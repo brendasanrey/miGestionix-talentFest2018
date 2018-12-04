@@ -15,8 +15,12 @@
             placeholder="Search"
             aria-label="Search"
             @input="handleSearchItem"
+            @focus="listening = true"
             v-model="searchString"
           >
+          <div>
+            <vue-speech id="grabacion" lang="es-MX" @onTranscriptionEnd="onEnd" v-if="listening"/>
+          </div>
           <div
             class="card list-search mt-0"
             v-if="searchResults.length > 0"
@@ -150,6 +154,7 @@ export default {
   name: "home",
   data() {
     return {
+      listening: false,
       searchString: ""
     };
   },
@@ -164,6 +169,12 @@ export default {
     }
   },
   methods: {
+    onEnd ({ lastSentence, transcription }) {
+      console.log(transcription[0].charAt(0).toUpperCase() + transcription[0].slice(1));
+      this.searchString = transcription[0].charAt(0).toUpperCase() + transcription[0].slice(1);
+      this.listening= false;
+      this.handleSearchItem();
+    },
     getListOfClients() {
       this.$store.dispatch("getList");
     },
