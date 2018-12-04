@@ -134,7 +134,7 @@ p {
 .btn-blue:hover {
   box-shadow: 0 0 40px 40px #3c91e6 inset;
 }
-.btn-blue {
+.btn-green {
   border: 2px solid #9fd356;
   color: #9fd356;
   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
