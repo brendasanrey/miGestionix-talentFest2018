@@ -83,16 +83,6 @@ p {
   background-color: #fff !important;
 }
 
-/* .btn-large {
-  background-color: inherit;
-  border: 2px solid #e98823;
-  color: #e98823;
-}
-
-.btn-large:hover {
-  background-color: #e98823;
-  color: #ffff;
-} */
 .btn-large {
   box-sizing: border-box;
   appearance: none;
