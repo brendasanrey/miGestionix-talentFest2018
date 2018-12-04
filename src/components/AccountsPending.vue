@@ -38,9 +38,11 @@
               v-for="result in searchResults"
               :key="result.tax_id"
               class="d-block list-group list-group-flush"
-              @click="goToSearchResult(result.id)"
             >
-              <li class="list-group-item">{{result.business_name}} - {{result.status}}</li>
+              <li
+                class="list-group-item"
+                @click="goToSearchResult(result.id)"
+              >{{result.business_name}} - {{result.status}}</li>
             </ul>
           </div>
         </form>
