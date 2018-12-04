@@ -2,8 +2,11 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Axios from "axios";
 import router from './router';
+import VueSpeech from 'vue-speech';
 
 Vue.use(Vuex);
+
+Vue.use(VueSpeech);
 
 export default new Vuex.Store({
   state: {

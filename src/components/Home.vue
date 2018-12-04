@@ -29,6 +29,9 @@
             aria-label="Search"
             v-model="searchString"
           >
+          <div>
+            <vue-speech id="grabacion" lang="es-MX" @onTranscriptionEnd="onEnd"/>
+          </div>
           <button
             class="btn btn-outline-success my-2 my-sm-0 mr-2"
             @click="handleSearchInput"
@@ -187,6 +190,10 @@ export default {
       } else {
         this.$store.dispatch("searchInput", this.searchString);
       }
+    },
+    onEnd ({ lastSentence, transcription }) {
+      // `lastSentence` is the last sentence before the pause
+      // `transcription` is the full array of sentences
     }
   }
 };
