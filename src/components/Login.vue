@@ -1,31 +1,54 @@
 <template>
-  <div class="container">
+  <div class="container fluid">
     <div class="row">
-      <div class="col s12 m6 l6 offset-m4 offset-l4">
+      <div class="col sm-12 md-12 lg-12">
         <div class="row">
-          <div class="col s12 m12 l12 mt center-align">
-            <img class="materialboxed" width="300" src="../assets/logogestionix.png" alt="logogestionix">
+          <div class="sm-12 md-8 lg-8 offset-md-4 lg-4 mt-3">
+            <center>
+              <img
+                src="../assets/logo_gestionix.png"
+                class="img-fluid"
+                width="330"
+                alt="Responsive image"
+              >
+            </center>
+
           </div>
         </div>
-        <form @submit.prevent="handleSigninUser">
+        <form
+          @submit.prevent="handleSigninUser"
+          class=" text-center mt-3"
+        >
           <div class="row">
-            <div class="col s12 m12 l12">
-              <h6 class="white-text">Inicia sesión y comienza a controlar tu negocio</h6>
+            <div class="col-12 col-md-8 col-lg-8 offset-lg-2">
+              <h2 class="text-white mt-3">Inicia sesión y comienza a controlar tu negocio</h2>
+            </div>
+            <div class="col-12 col-md-8 col-lg-6 offset-lg-3">
+              <p class="text-white mt-3">Usuario</p>
+              <input
+                class="w-100 input-login"
+                type="email"
+                v-model="username"
+              >
+            </div>
+            <div class="col-12 col-md-8 col-lg-6 offset-lg-3">
+              <p class="text-white mt-3">Contraseña</p>
+              <input
+                class="w-100 input-login"
+                type="password"
+                v-model="password"
+              >
+            </div>
+            <div class="col-12 col-md-8 col-lg-6 offset-lg-3">
+              <button class="w-70 mt-3 btn-large btn-orange">Entrar</button>
             </div>
           </div>
-          <p class="white-text">Usuario</p>
-          <input class="input-login" type="email" v-model="username">
-          <p class="white-text">Contraseña</p>
-          <input class="input-login" type="password" v-model="password">
-          <div class="center-align">
-            <button class="btn-large btn-orange mt">Entrar</button>
-          </div>
-          
         </form>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -51,14 +74,14 @@ export default {
 body {
   background-color: #37323f;
 }
-.mt {
-  margin-top: 3em;
-}
 
+p {
+  text-align: left;
+}
 .input-login {
-  border-radius: 10px!important;
+  border-radius: 10px !important;
   border: 1px solid #fff !important;
-  background-color: #fff!important;
+  background-color: #fff !important;
 }
 
 /* .btn-large {
