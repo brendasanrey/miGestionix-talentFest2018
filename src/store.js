@@ -54,3 +54,4 @@ export default new Vuex.Store({
     clients: state => state.clients
   }
 });
+
