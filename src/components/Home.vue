@@ -2,25 +2,29 @@
   <div>
     <h1>Home</h1>
     <div>
-      {{status}}
+
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "home",
   data() {
-    return{
-    status: ""
-    }
+    return {
+      status: ""
+    };
+  },
+  computed: {
+    ...mapGetters(["clients"])
   },
   created() {
     this.getListOfClients();
   },
   methods: {
     getListOfClients() {
-      this.status = "Loading...";
       this.$store.dispatch("getList");
     }
   }
