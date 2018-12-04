@@ -27,17 +27,26 @@
             type="search"
             placeholder="Search"
             aria-label="Search"
+            @input="handleSearchItem"
             v-model="searchString"
           >
-          <button
-            class="btn btn-outline-success my-2 my-sm-0 mr-2"
-            @click="handleSearchInput"
-          >Buscar</button>
-          <button
-            class="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >Cerrar Sesión</button>
+          <div
+            class="card list-search mt-0"
+            v-if="searchResults.length > 0"
+          >
+            <ul
+              v-for="result in searchResults"
+              :key="result.tax_id"
+              class="d-block list-group list-group-flush"
+            >
+              <li
+                class="list-group-item"
+                @click="goToSearchResult(result.id)"
+              >{{result.business_name}} - {{result.status}}</li>
+            </ul>
+          </div>
         </form>
+        <button class="btn btn-outline-success my-2 my-sm-0">Cerrar Sesión</button>
       </div>
     </nav>
     <div class="container-fluid">
@@ -172,7 +181,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["clients", "search"])
+    ...mapGetters(["clients", "searchResults"])
   },
   created() {
     this.getListOfClients();
@@ -181,12 +190,20 @@ export default {
     getListOfClients() {
       this.$store.dispatch("getList");
     },
-    handleSearchInput() {
-      if (this.searchString === "") {
-        console.log("error");
-      } else {
-        this.$store.dispatch("searchInput", this.searchString);
+    handleSearchItem() {
+      if (this.searchString !== "") {
+        this.$store.dispatch("searchItem", {
+          searchString: this.searchString
+        });
       }
+    },
+    goToSearchResult(resultId) {
+      // Limpiar la variable
+      this.searchTerm = "";
+      // redireccionar a la vista individual del post
+      this.$router.push(`/clients/${resultId}`);
+      // Limpiar los resultados de la busqueda
+      this.$store.commit("clearSearchResults");
     }
   }
 };
@@ -272,5 +289,13 @@ export default {
 
 a {
   color: inherit;
+}
+
+.list-search {
+  position: absolute;
+  width: 100vw;
+  z-index: 8;
+  top: 100%;
+  left: 0%;
 }
 </style>

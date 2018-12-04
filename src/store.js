@@ -8,14 +8,21 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     clients: [],
-    searchResponses: []
+    searchResults: [],
+    client: {}
   },
   mutations: {
     setClientList: (state, payload) => {
       state.clients = payload;
     },
-    searchResponse: (state, payload) => {
-      state.searched = payload
+    setClient: (state, payload) => {
+      state.client = payload;
+    },
+    setSearchResults: (state, payload) => {
+      state.searchResults = payload;
+    },
+    clearSearchResults: state => {
+      state.searchResults = [];
     }
   },
   actions: {
@@ -50,9 +57,26 @@ export default new Vuex.Store({
         })
         .catch(err => console.log(err));
     },
-    searchInput: ({
+    getClient: ({
       commit
     }, payload) => {
+      const currentToken = localStorage.getItem("access_token");
+      Axios.get(`https://api-test.gestionix.com/api/v3/clients/${payload}`, {
+          headers: {
+            Company: 17,
+            Authorization: `Bearer ${currentToken}`
+          }
+        })
+        .then(resp => {
+          commit('setClient', resp.data);
+        })
+        .catch(err => console.log(err));
+    },
+    searchItem: ({
+      commit
+    }, {
+      searchString
+    }) => {
       const currentToken = localStorage.getItem("access_token");
       Axios.get("https://api-test.gestionix.com/api/v3/clients/table", {
           headers: {
@@ -61,14 +85,17 @@ export default new Vuex.Store({
           }
         })
         .then(resp => {
-          commit('searchResponse', resp.data);
+          console.log(searchString);
+          const results = resp.data.filter(item => item.business_name.includes(searchString) || item.status.includes(searchString));
+          console.log(results);
+          commit('setSearchResults', results);
         })
-        .catch(err => console.log(err));
-    }
+    },
   },
   getters: {
     clients: state => state.clients,
-    search: state => state.search
+    searchResults: state => state.searchResults,
+    client: state => state.client
   }
 
 });

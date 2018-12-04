@@ -27,16 +27,24 @@
             type="search"
             placeholder="Search"
             aria-label="Search"
+            @input="handleSearchItem"
+            v-model="searchString"
           >
-          <button
-            class="btn btn-outline-success my-2 my-sm-0 mr-2"
-            type="submit"
-          >Buscar</button>
-          <button
-            class="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >Cerrar Sesión</button>
+          <div
+            class="card list-search mt-0"
+            v-if="searchResults.length > 0"
+          >
+            <ul
+              v-for="result in searchResults"
+              :key="result.tax_id"
+              class="d-block list-group list-group-flush"
+              @click="goToSearchResult(result.id)"
+            >
+              <li class="list-group-item">{{result.business_name}} - {{result.status}}</li>
+            </ul>
+          </div>
         </form>
+        <button class="btn btn-outline-success my-2 my-sm-0">Cerrar Sesión</button>
       </div>
     </nav>
     <div class="container-fluid">
@@ -75,7 +83,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "clients",
   computed: {
-    ...mapGetters(["clients"])
+    ...mapGetters(["clients", "searchResults"])
   },
   created() {
     this.getListOfClients();
@@ -83,6 +91,13 @@ export default {
   methods: {
     getListOfClients() {
       this.$store.dispatch("getList");
+    },
+    handleSearchItem() {
+      if (this.searchString !== "") {
+        this.$store.dispatch("searchItem", {
+          searchString: this.searchString
+        });
+      }
     }
   }
 };
