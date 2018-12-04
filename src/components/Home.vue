@@ -25,9 +25,7 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <caption>
-                      <a href="/accountsPenging">Ver Más</a>
-                    </caption>
+                    <caption><a href="/accountsPending">Ver Más</a></caption>
                     <thead class="text-center">
                       <tr>
                         <th scope="col">Compañía</th>
@@ -126,11 +124,6 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "home",
-  data() {
-    return {
-      status: ""
-    };
-  },
   computed: {
     ...mapGetters(["clients"])
   },
