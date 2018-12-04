@@ -4,14 +4,14 @@ import Login from "./components/Login.vue";
 import Home from "./components/Home.vue";
 import Clients from "./components/Clients.vue";
 import Client from "./components/Client.vue";
+import AccountsPending from "./components/AccountsPending.vue";
 
 Vue.use(Router);
 
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: "/",
       name: "login",
       component: Login
@@ -25,6 +25,11 @@ export default new Router({
       path: "/clients",
       name: "clients",
       component: Clients
+    },
+    {
+      path: "/accountsPending",
+      name: "accountsPending",
+      component: AccountsPending
     },
     {
       path: "/clients/:clientID",
