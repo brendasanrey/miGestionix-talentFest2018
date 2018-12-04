@@ -2,26 +2,13 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">MiGestionix</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="form-inline my-2 my-lg-0 ml-auto">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          >
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Buscar</button>
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerrar Sesión</button>
         </form>
@@ -39,11 +26,7 @@
                 </tr>
               </thead>
               <tbody class="text-center" v-for="client in clients" :key="client.id">
-                <tr
-                  v-for="account in client.accounts_pending"
-                  v-if="account.total>0"
-                  :key="account.id"
-                >
+                <tr v-for="account in client.accounts_pending" v-if="account.total>0" :key="account.id">
                   <td>{{client.business_name}}</td>
                   <td>
                     <ul class="list-group list-group-flush text-center">
@@ -70,7 +53,11 @@ export default {
     ...mapGetters(["clients"])
   },
   created() {
-    this.getListOfClients();
+    if (!localStorage.getItem("access_token")) {
+      this.$router.push("/");
+    } else {
+      this.getListOfClients();
+    }
   },
   methods: {
     getListOfClients() {
@@ -88,7 +75,6 @@ export default {
 thead {
   background-color: #e98823;
 }
-
 </style>
 
 
