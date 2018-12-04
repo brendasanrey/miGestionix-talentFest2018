@@ -40,7 +40,7 @@
               >
             </div>
             <div class="col-12 col-md-8 col-lg-6 offset-lg-3">
-              <button class="w-70 mt-3 btn-large btn-orange">Entrar</button>
+              <button class="w-70 mt-3 btn-large btn-orange mx-auto">Entrar</button>
             </div>
           </div>
         </form>
@@ -111,10 +111,11 @@ p {
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
 }
-.btn-large:hover, .btn-large:focus {
+.btn-large:hover,
+.btn-large:focus {
   color: #37323f;
   outline: 0;
 }
@@ -142,6 +143,4 @@ p {
 .btn-blue:hover {
   box-shadow: 0 0 40px 40px #9fd356 inset;
 }
-
-
 </style>
