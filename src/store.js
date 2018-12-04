@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import Axios from "axios";
+import router from './router';
 
 Vue.use(Vuex);
 
@@ -43,9 +44,6 @@ export default new Vuex.Store({
         .then(resp => {
           console.log(resp.data);
           commit('setClientList', resp.data);
-          resp.data.forEach(client => {
-
-          })
         })
         .catch(err => console.log(err));
     }
