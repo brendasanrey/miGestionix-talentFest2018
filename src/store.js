@@ -1,7 +1,6 @@
-
 import Vue from "vue";
 import Vuex from "vuex";
-
+import Axios from "axios";
 
 Vue.use(Vuex);
 
@@ -9,8 +8,15 @@ export default new Vuex.Store({
   state: {},
   mutations: {},
   actions: {
-    signinUser: ({ commit }, payload) => {
-      console.log(payload);
+    signinUser: ({ commit }, { username, password }) => {
+      Axios.post("https://api-test.gestionix.com/api/v3/users/authentication", {
+        user: username,
+        password: password
+      })
+        .then(resp => {
+          localStorage.setItem("access_token", resp.data.access_token);
+        })
+        .catch(err => console.log(err));
     },
     getList: ({ commit }) => {
       Axios.get("https://api-test.gestionix.com/api/v3/clients/table", {

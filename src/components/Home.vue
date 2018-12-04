@@ -11,7 +11,9 @@
 export default {
   name: "home",
   data() {
+    return{
     status: ""
+    }
   },
   created() {
     this.getListOfClients();
