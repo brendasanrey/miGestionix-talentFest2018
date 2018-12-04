@@ -16,7 +16,6 @@
             @input="handleSearchItem"
             v-model="searchString"
           >
-<<<<<<< HEAD
           <div>
             <vue-speech id="grabacion" lang="es-MX" @onTranscriptionEnd="onEnd" v-if="this.listening" @click=""/>
             </v-else>
@@ -29,7 +28,6 @@
             class="btn btn-outline-success my-2 my-sm-0"
             type="submit"
           >Cerrar Sesión</button>
-=======
           <div
             class="card list-search mt-0"
             v-if="searchResults.length > 0"
@@ -45,7 +43,6 @@
               >{{result.business_name}} - {{result.status}}</li>
             </ul>
           </div>
->>>>>>> upstream/master
         </form>
         <button class="btn btn-outline-success my-2 my-sm-0" @click="handleSignOutUser">Cerrar Sesión</button>
       </div>

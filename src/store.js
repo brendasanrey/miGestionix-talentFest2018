@@ -1,12 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import Axios from "axios";
-<<<<<<< HEAD
 import router from './router';
 import VueSpeech from 'vue-speech';
-=======
-import router from "./router";
->>>>>>> upstream/master
+
 
 Vue.use(Vuex);
 
