@@ -28,7 +28,7 @@
                     <caption class="btn-card btn-orange-c">
                       <a href="/accountsPending">Ver Más</a>
                     </caption>
-                    <thead class="text-left">
+                    <thead class="text-left ">
                       <tr>
                         <th scope="col">Compañía</th>
                         <th class="text-center" scope="col">Cantidad</th>
@@ -37,7 +37,11 @@
                     <tbody class="text-left" v-for="client in clients" :key="client.id">
                       <tr v-for="account in client.accounts_pending" v-if="account.total>0" :key="account.id">
                         <td>{{client.business_name}}</td>
-                        <td class="text-center">{{account.total}}</td>
+                        <td>
+                          <ul class="list-group list-group-flush text-center">
+                            <li class="list-group-item text-center">{{account.total}}</li>
+                          </ul>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -79,7 +83,7 @@
           </div>
         </div>
         <div class="col-md-12">
-          <div class="card">
+          <div class="card card-mb">
             <div class="card-content">
               <div class="card-header card-blue">
                 <h1 class="card-heading">Clientes</h1>
@@ -175,6 +179,10 @@ export default {
   margin: 1em;
 }
 
+.card-mb {
+  margin-bottom: 2em;
+}
+
 .card-header {
   color: #ffffff;
   border-bottom: 3px solid #bbb;
@@ -225,6 +233,7 @@ box-sizing: border-box;
   text-transform: uppercase;
   font-weight: 700;
 }
+
 .btn-card:hover,
 .btn-card:focus {
   color: white;
