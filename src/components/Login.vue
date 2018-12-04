@@ -74,7 +74,6 @@ export default {
 body {
   background-color: #37323f;
 }
-
 p {
   text-align: left;
 }
@@ -111,10 +110,11 @@ p {
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
 }
-.btn-large:hover, .btn-large:focus {
+.btn-large:hover,
+.btn-large:focus {
   color: #37323f;
   outline: 0;
 }
@@ -142,6 +142,4 @@ p {
 .btn-blue:hover {
   box-shadow: 0 0 40px 40px #9fd356 inset;
 }
-
-
 </style>

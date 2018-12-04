@@ -1,22 +1,48 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">MiGestionix</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a
+        class="navbar-brand"
+        href="#"
+      >MiGestionix</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div
+        class="collapse navbar-collapse"
+        id="navbarSupportedContent"
+      >
         <form class="form-inline my-2 my-lg-0 ml-auto">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Buscar</button>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerrar Sesión</button>
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            v-model="searchString"
+          >
+          <button
+            class="btn btn-outline-success my-2 my-sm-0 mr-2"
+            @click="handleSearchInput"
+          >Buscar</button>
+          <button
+            class="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+          >Cerrar Sesión</button>
         </form>
       </div>
     </nav>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
           <div class="card">
             <div class="card-content">
               <div class="card-header card-orange">
@@ -34,8 +60,16 @@
                         <th scope="col">Cantidad</th>
                       </tr>
                     </thead>
-                    <tbody class="text-center" v-for="client in clients" :key="client.id">
-                      <tr v-for="account in client.accounts_pending" v-if="account.total>0" :key="account.id">
+                    <tbody
+                      class="text-center"
+                      v-for="client in clients"
+                      :key="client.id"
+                    >
+                      <tr
+                        v-for="account in client.accounts_pending"
+                        v-if="account.total>0"
+                        :key="account.id"
+                      >
                         <td>{{client.business_name}}</td>
                         <td>
                           <ul class="list-group list-group-flush text-center">
@@ -50,7 +84,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
           <div class="card">
             <div class="card-content">
               <div class="card-header card-blue">
@@ -69,7 +103,10 @@
                         <th scope="col">Ultima Actividad</th>
                       </tr>
                     </thead>
-                    <tbody v-for="client in clients.slice(0,6)" :key="client.tax_id">
+                    <tbody
+                      v-for="client in clients.slice(0,6)"
+                      :key="client.tax_id"
+                    >
                       <tr>
                         <td>{{client.business_name}}</td>
                         <td>{{client.tax_id}}</td>
@@ -102,7 +139,10 @@
                         <th scope="col">Status</th>
                       </tr>
                     </thead>
-                    <tbody v-for="client in clients.slice(0,8)" :key="client.tax_id">
+                    <tbody
+                      v-for="client in clients.slice(0,8)"
+                      :key="client.tax_id"
+                    >
                       <tr>
                         <td>{{client.business_name}}</td>
                         <td>{{client.tax_id}}</td>
@@ -126,8 +166,13 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "home",
+  data() {
+    return {
+      searchString: ""
+    };
+  },
   computed: {
-    ...mapGetters(["clients"])
+    ...mapGetters(["clients", "search"])
   },
   created() {
     this.getListOfClients();
@@ -135,6 +180,13 @@ export default {
   methods: {
     getListOfClients() {
       this.$store.dispatch("getList");
+    },
+    handleSearchInput() {
+      if (this.searchString === "") {
+        console.log("error");
+      } else {
+        this.$store.dispatch("searchInput", this.searchString);
+      }
     }
   }
 };
@@ -153,8 +205,8 @@ export default {
   padding: 0px;
   margin-top: 2em;
   overflow: hidden;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   font-family: "Roboto", sans-serif;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -183,9 +235,6 @@ export default {
   border-bottom: 1px #2196f3;
   color: #fff;
 }
-<<<<<<< HEAD
-</style>
-=======
 
 .card-orange {
   background-color: #e98823;
@@ -215,7 +264,8 @@ export default {
   text-transform: uppercase;
   font-weight: 700;
 }
-.btn-card:hover, .btn-card:focus {
+.btn-card:hover,
+.btn-card:focus {
   color: white;
   outline: 0;
 }
@@ -224,4 +274,3 @@ a {
   color: inherit;
 }
 </style>
->>>>>>> origin/master

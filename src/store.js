@@ -7,11 +7,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    clients: []
+    clients: [],
+    searchResponses: []
   },
   mutations: {
     setClientList: (state, payload) => {
       state.clients = payload;
+    },
+    searchResponse: (state, payload) => {
+      state.searched = payload
     }
   },
   actions: {
@@ -45,10 +49,26 @@ export default new Vuex.Store({
           commit('setClientList', resp.data);
         })
         .catch(err => console.log(err));
+    },
+    searchInput: ({
+      commit
+    }, payload) => {
+      const currentToken = localStorage.getItem("access_token");
+      Axios.get("https://api-test.gestionix.com/api/v3/clients/table", {
+          headers: {
+            Company: 17,
+            Authorization: `Bearer ${currentToken}`
+          }
+        })
+        .then(resp => {
+          commit('searchResponse', resp.data);
+        })
+        .catch(err => console.log(err));
     }
   },
   getters: {
-    clients: state => state.clients
+    clients: state => state.clients,
+    search: state => state.search
   }
 
 });
