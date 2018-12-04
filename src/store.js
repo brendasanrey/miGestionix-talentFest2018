@@ -47,7 +47,24 @@ export default new Vuex.Store({
         })
         .catch(err => console.log(err));
     },
-    searchInput: ({ commit }, payload) => {
+    getClient: ({
+      commit
+    }) => {
+      const currentToken = localStorage.getItem("access_token");
+      Axios.get("https://api-test.gestionix.com/api/v3/clients/:id", {
+          headers: {
+            Company: 17,
+            Authorization: `Bearer ${currentToken}`
+          }
+        })
+        .then(resp => {
+          commit('setClient', resp.data);
+        })
+        .catch(err => console.log(err));
+    },
+    searchInput: ({
+      commit
+    }, payload) => {
       const currentToken = localStorage.getItem("access_token");
       Axios.get("https://api-test.gestionix.com/api/v3/clients/table", {
         headers: {

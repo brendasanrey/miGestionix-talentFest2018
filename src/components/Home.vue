@@ -25,16 +25,16 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <caption class="btn-card btn-orange">
+                    <caption class="btn-card btn-orange-c">
                       <a href="/accountsPending">Ver Más</a>
                     </caption>
-                    <thead class="text-center">
+                    <thead class="text-left ">
                       <tr>
                         <th scope="col">Compañía</th>
-                        <th scope="col">Cantidad</th>
+                        <th class="text-center" scope="col">Cantidad</th>
                       </tr>
                     </thead>
-                    <tbody class="text-center" v-for="client in clients" :key="client.id">
+                    <tbody class="text-left" v-for="client in clients" :key="client.id">
                       <tr v-for="account in client.accounts_pending" v-if="account.total>0" :key="account.id">
                         <td>{{client.business_name}}</td>
                         <td>
@@ -53,13 +53,13 @@
         <div class="col-md-7">
           <div class="card">
             <div class="card-content">
-              <div class="card-header card-blue">
+              <div class="card-header card-green">
                 <h1 class="card-heading">Clientes Principales</h1>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <caption class="btn-card btn-blue">
+                    <caption class="btn-card btn-green-c">
                       <a href="/topClients">Ver Más</a>
                     </caption>
                     <thead>
@@ -83,15 +83,15 @@
           </div>
         </div>
         <div class="col-md-12">
-          <div class="card">
+          <div class="card card-mb">
             <div class="card-content">
-              <div class="card-header card-green">
+              <div class="card-header card-blue">
                 <h1 class="card-heading">Clientes</h1>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <caption class="btn-card btn-green">
+                    <caption class="btn-card btn-blue-c">
                       <a href="/clients">Ver Más</a>
                     </caption>
                     <thead>
@@ -182,6 +182,10 @@ export default {
   margin: 1em;
 }
 
+.card-mb {
+  margin-bottom: 2em;
+}
+
 .card-header {
   color: #ffffff;
   border-bottom: 3px solid #bbb;
@@ -214,7 +218,7 @@ export default {
 }
 
 .btn-card {
-  box-sizing: border-box;
+box-sizing: border-box;
   appearance: none;
   background-color: transparent;
   border-radius: 0.6em;
@@ -224,17 +228,65 @@ export default {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1;
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: -10px;
   padding: 1.2em 2.8em;
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;
 }
+
 .btn-card:hover,
 .btn-card:focus {
   color: white;
   outline: 0;
+}
+
+.btn-orange-c {
+  border: 2px solid #e98823;
+  color: #e98823;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.btn-orange-c:hover {
+  box-shadow: 0 0 40px 40px #e98823 inset;
+}
+.btn-blue-c {
+  border: 2px solid #3c91e6;
+  color: #3c91e6;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.btn-blue-c:hover {
+  box-shadow: 0 0 40px 40px #3c91e6 inset;
+}
+
+.btn-green-c {
+  border: 2px solid #9fd356;
+  color: #9fd356;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.btn-green-c:hover {
+  box-shadow: 0 0 40px 40px #9fd356 inset;
+}
+
+.btn-nvb {
+  background-color: transparent;
+}
+
+.btn-nvb:hover,
+.btn-nvb:focus {
+  color: #F8F9FA;
+  outline: 0;
+}
+
+.btn-navbar {
+  border: 2px solid #37323f;
+  color: #37323f;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.btn-navbar:hover {
+  box-shadow: 0 0 40px 40px #37323f inset;
 }
 
 a {
