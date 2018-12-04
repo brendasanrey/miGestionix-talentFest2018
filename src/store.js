@@ -44,9 +44,6 @@ export default new Vuex.Store({
         .then(resp => {
           console.log(resp.data);
           commit('setClientList', resp.data);
-          resp.data.forEach(client => {
-
-          })
         })
         .catch(err => console.log(err));
     }
