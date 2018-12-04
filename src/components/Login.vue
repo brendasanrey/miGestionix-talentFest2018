@@ -18,7 +18,7 @@
           <p class="white-text">Contraseña</p>
           <input class="input-login" type="password" v-model="password">
           <div class="center-align">
-            <button class="btn-large mt">Entrar</button>
+            <button class="btn-large btn-orange mt">Entrar</button>
           </div>
           
         </form>
@@ -61,7 +61,7 @@ body {
   background-color: #fff!important;
 }
 
-.btn-large {
+/* .btn-large {
   background-color: inherit;
   border: 2px solid #e98823;
   color: #e98823;
@@ -70,5 +70,55 @@ body {
 .btn-large:hover {
   background-color: #e98823;
   color: #ffff;
+} */
+.btn-large {
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border-radius: 0.6em;
+  border: 2px solid;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
 }
+.btn-large:hover, .btn-large:focus {
+  color: #37323f;
+  outline: 0;
+}
+.btn-orange {
+  border: 2px solid #e98823;
+  color: #e98823;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.btn-orange:hover {
+  box-shadow: 0 0 40px 40px #e98823 inset;
+}
+.btn-blue {
+  border: 2px solid #3c91e6;
+  color: #3c91e6;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.btn-blue:hover {
+  box-shadow: 0 0 40px 40px #3c91e6 inset;
+}
+.btn-blue {
+  border: 2px solid #9fd356;
+  color: #9fd356;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.btn-blue:hover {
+  box-shadow: 0 0 40px 40px #9fd356 inset;
+}
+
+
 </style>
