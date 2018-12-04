@@ -1,41 +1,16 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a
-        class="navbar-brand"
-        href="#"
-      >MiGestionix</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <a class="navbar-brand" href="#">MiGestionix</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div
-        class="collapse navbar-collapse"
-        id="navbarSupportedContent"
-      >
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <form class="form-inline my-2 my-lg-0 ml-auto">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          >
-          <button
-            class="btn btn-outline-success my-2 my-sm-0 mr-2"
-            type="submit"
-          >Buscar</button>
-          <button
-            class="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >Cerrar Sesión</button>
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Buscar</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerrar Sesión</button>
         </form>
       </div>
     </nav>
@@ -50,23 +25,17 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <caption class="btn-card btn-orange"><a href="/accountsPending">Ver Más</a></caption>
+                    <caption class="btn-card btn-orange">
+                      <a href="/accountsPending">Ver Más</a>
+                    </caption>
                     <thead class="text-center">
                       <tr>
                         <th scope="col">Compañía</th>
                         <th scope="col">Cantidad</th>
                       </tr>
                     </thead>
-                    <tbody
-                      class="text-center"
-                      v-for="client in clients"
-                      :key="client.id"
-                    >
-                      <tr
-                        v-for="account in client.accounts_pending"
-                        v-if="account.total>0"
-                        :key="account.id"
-                      >
+                    <tbody class="text-center" v-for="client in clients" :key="client.id">
+                      <tr v-for="account in client.accounts_pending" v-if="account.total>0" :key="account.id">
                         <td>{{client.business_name}}</td>
                         <td>
                           <ul class="list-group list-group-flush text-center">
@@ -90,7 +59,9 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <caption class="btn-card btn-blue"><a href="/topClients">Ver Más</a></caption>
+                    <caption class="btn-card btn-blue">
+                      <a href="/topClients">Ver Más</a>
+                    </caption>
                     <thead>
                       <tr>
                         <th scope="col">Compañía</th>
@@ -98,10 +69,7 @@
                         <th scope="col">Ultima Actividad</th>
                       </tr>
                     </thead>
-                    <tbody
-                      v-for="client in clients.slice(0,6)"
-                      :key="client.tax_id"
-                    >
+                    <tbody v-for="client in clients.slice(0,6)" :key="client.tax_id">
                       <tr>
                         <td>{{client.business_name}}</td>
                         <td>{{client.tax_id}}</td>
@@ -123,7 +91,9 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <caption class="btn-card btn-green"><a href="/clients">Ver Más</a></caption>
+                    <caption class="btn-card btn-green">
+                      <a href="/clients">Ver Más</a>
+                    </caption>
                     <thead>
                       <tr>
                         <th scope="col">Compañía</th>
@@ -132,10 +102,7 @@
                         <th scope="col">Status</th>
                       </tr>
                     </thead>
-                    <tbody
-                      v-for="client in clients.slice(0,8)"
-                      :key="client.tax_id"
-                    >
+                    <tbody v-for="client in clients.slice(0,8)" :key="client.tax_id">
                       <tr>
                         <td>{{client.business_name}}</td>
                         <td>{{client.tax_id}}</td>
@@ -216,6 +183,9 @@ export default {
   border-bottom: 1px #2196f3;
   color: #fff;
 }
+<<<<<<< HEAD
+</style>
+=======
 
 .card-orange {
   background-color: #e98823;
@@ -254,3 +224,4 @@ a {
   color: inherit;
 }
 </style>
+>>>>>>> origin/master
