@@ -30,7 +30,8 @@
             v-model="searchString"
           >
           <div>
-            <vue-speech id="grabacion" lang="es-MX" @onTranscriptionEnd="onEnd"/>
+            <vue-speech id="grabacion" lang="es-MX" @onTranscriptionEnd="onEnd" v-if="this.listening" @click=""/>
+            </v-else>
           </div>
           <button
             class="btn btn-outline-success my-2 my-sm-0 mr-2"
@@ -171,7 +172,8 @@ export default {
   name: "home",
   data() {
     return {
-      searchString: ""
+      searchString: "",
+      listening: true
     };
   },
   computed: {
@@ -192,6 +194,10 @@ export default {
       }
     },
     onEnd ({ lastSentence, transcription }) {
+      console.log(transcription);
+      this.listening= false;
+
+      
       // `lastSentence` is the last sentence before the pause
       // `transcription` is the full array of sentences
     }
