@@ -27,10 +27,11 @@
             type="search"
             placeholder="Search"
             aria-label="Search"
+            v-model="searchString"
           >
           <button
             class="btn btn-outline-success my-2 my-sm-0 mr-2"
-            type="submit"
+            @click="handleSearchInput"
           >Buscar</button>
           <button
             class="btn btn-outline-success my-2 my-sm-0"
@@ -41,7 +42,7 @@
     </nav>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
           <div class="card">
             <div class="card-content">
               <div class="card-header card-orange">
@@ -50,7 +51,9 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <caption class="btn-card btn-orange"><a href="/accountsPending">Ver Más</a></caption>
+                    <caption class="btn-card btn-orange">
+                      <a href="/accountsPending">Ver Más</a>
+                    </caption>
                     <thead class="text-center">
                       <tr>
                         <th scope="col">Compañía</th>
@@ -81,7 +84,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
           <div class="card">
             <div class="card-content">
               <div class="card-header card-blue">
@@ -90,7 +93,9 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <caption class="btn-card btn-blue"><a href="/topClients">Ver Más</a></caption>
+                    <caption class="btn-card btn-blue">
+                      <a href="/topClients">Ver Más</a>
+                    </caption>
                     <thead>
                       <tr>
                         <th scope="col">Compañía</th>
@@ -123,7 +128,9 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <caption class="btn-card btn-green"><a href="/clients">Ver Más</a></caption>
+                    <caption class="btn-card btn-green">
+                      <a href="/clients">Ver Más</a>
+                    </caption>
                     <thead>
                       <tr>
                         <th scope="col">Compañía</th>
@@ -159,8 +166,13 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "home",
+  data() {
+    return {
+      searchString: ""
+    };
+  },
   computed: {
-    ...mapGetters(["clients"])
+    ...mapGetters(["clients", "search"])
   },
   created() {
     this.getListOfClients();
@@ -168,6 +180,13 @@ export default {
   methods: {
     getListOfClients() {
       this.$store.dispatch("getList");
+    },
+    handleSearchInput() {
+      if (this.searchString === "") {
+        console.log("error");
+      } else {
+        this.$store.dispatch("searchInput", this.searchString);
+      }
     }
   }
 };
@@ -186,8 +205,8 @@ export default {
   padding: 0px;
   margin-top: 2em;
   overflow: hidden;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   font-family: "Roboto", sans-serif;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -245,7 +264,8 @@ export default {
   text-transform: uppercase;
   font-weight: 700;
 }
-.btn-card:hover, .btn-card:focus {
+.btn-card:hover,
+.btn-card:focus {
   color: white;
   outline: 0;
 }

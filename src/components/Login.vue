@@ -40,7 +40,7 @@
               >
             </div>
             <div class="col-12 col-md-8 col-lg-6 offset-lg-3">
-              <button class="w-70 mt-3 btn-large btn-orange mx-auto">Entrar</button>
+              <button class="w-30 mt-3 btn-large btn-orange mx-auto">Entrar</button>
             </div>
           </div>
         </form>
@@ -74,7 +74,6 @@ export default {
 body {
   background-color: #37323f;
 }
-
 p {
   text-align: left;
 }
